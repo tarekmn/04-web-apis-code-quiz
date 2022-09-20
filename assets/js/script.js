@@ -1,5 +1,5 @@
 //Global variables
-var count = 120;
+var count = 10;
 var score = 0;
 var i= 0;
 
@@ -20,26 +20,28 @@ var questions = [
    a: "steak" },
   {q: "favorite color?",
   lista: ["red", "orange", "blue", "green"],
-   a: "blue" }
+   a: "blue" },
+   {q: "favorite car",
+  lista: ["accord", "lambo", "escalade", "minivan"],
+   a: "lambo" },
+
 ]
 
-console.log(questions[0].q);
-console.log(questions[0].lista[0]);
-console.log(questions[0].a);
+//Testers to make sure we are selecting correct key value pairs//
+//console.log(questions[0].q);       
+//console.log(questions[0].lista[0]);
+//console.log(questions[0].a);
 
 
 
-// //var buttons = document.querySelectorAll("button"); array
-//correctButton.setAttribute("data-correct", "yes");
-//key thing is we can set attribute on any DOM element
 
+//function that asks questions[i]
 function askingQuestionX () {
 
- //for (var i = 0; i < questions.length; i++){
-  var currentquestion = questions[i];
-  //var section = document.createElement("sections")
-  var questionText = document.createElement("h2");
-  var answerTextUl = document.createElement("ul");
+  var currentquestion = questions[i];         //built as a blank, not sure if will need
+
+  var questionText = document.createElement("h2");            //creating elements to later append
+  var answerTextUl = document.createElement("ul");          
   var answerTextLi1 = document.createElement("button");
   var answerTextLi2 = document.createElement("button");
   var answerTextLi3 = document.createElement("button");
@@ -59,22 +61,22 @@ function askingQuestionX () {
   answerTextUl.appendChild(answerTextLi4);
 
   answerTextUl.addEventListener("click", function (event){
-    console.log(event.target);
-    // console.log(questions[i].a);
+    //console.log(event.target);    to make sure correct event is targeted
     if(event.target.textContent === questions[i].a) {
       console.log("correct answer")
       score++ ;
-      console.log(score);
       scoreEl.textContent = score;
 
     } else {
-      count -= 10;
+        count -= 10;
+      console.log("wrong answer");
     }
+
     i++;
     main.innerHTML = "";
 
-    if(i > questions.length - 1) {
-      //end quiz
+    if(i > questions.length - 1 || count === 0)  {
+      //end quiz or basically clear everything
       //Text thats thanks for playing
       //Display score and save initials, save to local upon reload
     } else { 
@@ -85,21 +87,17 @@ function askingQuestionX () {
 
 }
 
-// for (var i = 0; i <  buttons.length; i++){
-// buttons[i].addEventListener("click", function(event){}
-//console.log("click"))
-// }
 
 
 
-
-//Timer intervals Updates count on page
+//Timer intervals & Updateing the count on page
 function setTime() {
   var timerInterval = setInterval(function() {
     count-- ;
     console.log(count);
-    if(count === 0) {
+    if(count === 0 || count < 0) {
       clearInterval(timerInterval);
+      count = 0;
     }
     timer.textContent = count;
 
@@ -107,24 +105,11 @@ function setTime() {
 }
 
 
-//Start button
-    //When clicked: 
+// Start Button that initiates everything
+
 startButton.addEventListener("click", function (){
   header.innerHTML = " "                   //important to clear, innerHTML is a property
   setTime(); //a timer starts 
-  //question1();
-  //askingQuestion(i);
-  //i++
+  askingQuestionX() 
 
-  askingQuestionX()
-
-})
-    //a timer starts 
-    //presented with a question Q1
-    //If Q1 = correct
-    //presented with question 2
-
-//
-
-//even listeners for when user selects option
-//if correct answer etc etc
+});
