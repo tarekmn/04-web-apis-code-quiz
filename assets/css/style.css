@@ -1,22 +1,28 @@
 
-header, main {
+ header, main {
   display: flex;
   flex-direction: column;
   margin-top: 50px;
   text-align: center;
   border: 2px black solid;
+  justify-content: center;   
+  align-items: center;
 
 }
-
 
 
 .statTime {
-  float: right;
-  padding-right: 75px;
- 
+  display: flex;
+  justify-content: flex-end;
 }
 
-#startbutton {
-  background-color: rgba(133, 83, 133, 0.94);
+
+#startbutton, button {
+  background-color: rgba(216, 197, 216, 0.94);
+}
+
+ul {            /*I want to put space between buttons */
+  display: flex;
+  justify-content: space-between;
 }
 
