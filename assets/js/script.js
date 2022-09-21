@@ -1,88 +1,146 @@
+//Remaining Tasks:
+// 1. saving highscore to array
+// 2. showing high score view button
+
+
 //Global variables
-var count = 10;
+var count = 25;
 var score = 0;
-var i= 0;
-var highScoreArray = [];   //need to retrieve from local memory and push to array. Not working
-console.log(highScoreArray);
+var i = 0;
+var sampleArray = [4, 5 , 1 ,9 ,8]
 
-
-//Selecting elments
+//Selecting DOM elments
 var startButton = document.querySelector("#startbutton");
 var timer = document.querySelector("#timer");
 var header = document.querySelector("header");
 var main = document.querySelector("main");
 var scoreEl = document.querySelector("#scoreid");
-//var h1 = document.querySelector("#h1");
-//var p1 = document.querySelector("#p1");
+var inputText = document.createElement("input");
+var inputButton = document.createElement("button");
+var viewHighScore = document.createElement("button");
+var playAgain = document.createElement("button");
+
 
 
 //Questions in an array of objects
 var questions = [
-  {q: "Inside which HTML element do we put the JavaScript?",
-  lista: ["<javascript>", "<script>", "<js>", "<scripting>"],
-   a: "<script>" },
-  {q: "Which of the following object is the main entry point to all client-side JavaScript features and APIs? color?",
-  lista: ["position", "window", "standard", "location"],
-   a: "window" },
-   {q: "Which of the following can be used to call a JavaScript Code Snippet?",
-  lista: ["function", "preprocessor", "triggeringevent", "rmi"],
-   a: "function" },
-   {q: "Which of the following scoping type does JavaScript use?",
-  lista: ["sequential", "segmental", "lexical", "literal"],
-   a: "lexical" },
-   {q: "What is the result of console.log(p)?",
-  lista: ["valueNotfound", "referenceError", "null", "zero"],
-   a: "referenceError" },
-   {q: "Which of the following is not a framework?",
-   lista: ["JavaScript.NET", "JavaScript", "CocoaJS", "jQuery"],
-    a: "JavaScript" },
-
+  {
+    q: "Inside which HTML element do we put the JavaScript?",
+    lista: ["<javascript>", "<script>", "<js>", "<scripting>"],
+    a: "<script>"
+  },
+  {
+    q: "Which of the following object is the main entry point to all client-side JavaScript features and APIs? color?",
+    lista: ["position", "window", "standard", "location"],
+    a: "window"
+  },
+  {
+    q: "Which of the following can be used to call a JavaScript Code Snippet?",
+    lista: ["function", "preprocessor", "triggeringevent", "rmi"],
+    a: "function"
+  },
+  {
+    q: "Which of the following scoping type does JavaScript use?",
+    lista: ["sequential", "segmental", "lexical", "literal"],
+    a: "lexical"
+  },
+  {
+    q: "What is the result of console.log(p)?",
+    lista: ["valueNotfound", "referenceError", "null", "zero"],
+    a: "referenceError"
+  },
+  {
+    q: "Which of the following is not a framework?",
+    lista: ["JavaScript.NET", "JavaScript", "CocoaJS", "jQuery"],
+    a: "JavaScript"
+  },
+  {
+    q: "Which acronym stands for HyperText Markup language  ",
+    lista: ["HTML", "JavaScript", "CocoaJS", "Span"],
+    a: "HTML"
+  },
+  {
+    q: "Which of the following is the source of a img html code",
+    lista: ["alt", "src", "a", "width"],
+    a: "src"
+  },
 ]
 
-//Testers to make sure we are selecting correct key value pairs//
-//console.log(questions[0].q);       
-//console.log(questions[0].lista[0]);
-//console.log(questions[0].a);
+
 
 function endGame() {
-  header.innerHTML = "" ;
+  header.innerHTML = "";
   main.innerHTML = "";
-  main.textContent= "Game Over! Please save your intials"
+  main.textContent = "Game Over! Please save your intials"
 
-  var inputText = document.createElement("input");
-  var inputButton = document.createElement("button");
+
   //var inputLabel = document.createElement("label");
   //inputLabel.textContent = "Your initials";
   inputButton.textContent = "Save"
+  viewHighScore.textContent = "View High Score";
+  playAgain.textContent = "Play Again";
   main.appendChild(inputText);
   main.appendChild(inputButton);
- // main.appendChild(inputLabel);
+  main.appendChild(viewHighScore)
+  main.appendChild(playAgain);
+  // main.appendChild(inputLabel);
 
 
-inputButton.addEventListener("click", function(event){
-  //retrieve what is input text
-  console.log(inputText.value);
-  //highScoreArray.push(inputText.value);
-  localStorage.setItem("initals", inputText.value);
-  localStorage.setItem("highScore", score);
+  inputButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    //retrieve what is input text
+    console.log(inputText.value);
+    //highScoreArray.push(inputText.value);
+    localStorage.setItem("initals", inputText.value);
+    localStorage.setItem("highScore", score);
 
-  //push that and score to local memory
-})
+    //Retrieve high score from local memory and push into array
 
-   //end quiz or basically clear everything
-      //Text thats thanks for playing
-      //Display score and save initials, save to local upon reload
-  
+    
+    var finalScore = {
+      initials: inputText.value,
+      score: score
+    };
+    var localHighScore = localStorage.getItem("highScore");
+    //   console.log(finalScore);
+    if (localHighScore === null) {
+      localHighScore = []
+    } else {
+      localHighScore = JSON.parse(localHighScore)
+    }
+    var emptyArray = [];
+    emptyArray.push(finalScore);
+    console.log(emptyArray);
+
+    //localHighScore.push(finalScore);
+    console.log(localHighScore);
+  })
+
+  playAgain.addEventListener("click", function(event){
+    document.location.reload(true);
+  })
+
+  viewHighScore.addEventListener("click", function(event){
+
+    // We want it to retrieve the array and find high score
+    var indexOfHighestValue = Math.max(...sampleArray);
+    console.log(sampleArray);
+    console.log(indexOfHighestValue);
+    alert("The high score is:  " + indexOfHighestValue);
+
+
+  })
+
 }
 
 
 //function that asks questions[i]
-function askingQuestionX () {
+function askingQuestionX() {
 
-  var currentquestion = questions[i];         //built as a blank, not sure if will need
+//creating elements to later append
 
-  var questionText = document.createElement("h2");            //creating elements to later append
-  var answerTextUl = document.createElement("ul");          
+  var questionText = document.createElement("h4");            
+  var answerTextUl = document.createElement("ul");
   var answerTextLi1 = document.createElement("button");
   var answerTextLi2 = document.createElement("button");
   var answerTextLi3 = document.createElement("button");
@@ -101,29 +159,29 @@ function askingQuestionX () {
   answerTextUl.appendChild(answerTextLi3);
   answerTextUl.appendChild(answerTextLi4);
 
-  answerTextUl.addEventListener("click", function (event){
+  answerTextUl.addEventListener("click", function (event) {
     //console.log(event.target);    to make sure correct event is targeted
-    if(event.target.textContent === questions[i].a) {
+    if (event.target.textContent === questions[i].a) {
       console.log("correct answer")
-      score++ ;
+      score++;
       scoreEl.textContent = score;
 
     } else {
-        count -= 10;
+      count -= 10;
       console.log("wrong answer");
     }
 
     i++;
     main.innerHTML = "";
 
-    if(i > questions.length - 1)  {
+    if (i > questions.length - 1) {
 
-      endGame() 
-    } else { 
+      endGame()
+    } else {
       askingQuestionX();
     }
 
-   });
+  });
 
 }
 
@@ -132,10 +190,10 @@ function askingQuestionX () {
 
 //Timer intervals & Updateing the count on page
 function setTime() {
-  var timerInterval = setInterval(function() {
-    count-- ;
+  var timerInterval = setInterval(function () {
+    count--;
     console.log(count);
-    if(count === 0 || count < 0) {
+    if (count === 0 || count < 0) {
       clearInterval(timerInterval);
       count = 0;
       endGame();
@@ -145,20 +203,15 @@ function setTime() {
   }, 1000);
 }
 
-//Retrieve high score from local memory and push into array
-function retrieveHighScore() {
-  var localHighScore = localStorage.getItem("highScore");
-  highScoreArray.push(localHighScore);
-}
 
 
 // Start Button that initiates everything
 
-startButton.addEventListener("click", function (){
-  header.innerHTML = " "                   //important to clear, innerHTML is a property
+startButton.addEventListener("click", function () {
+  header.innerHTML = ""             //important to clear, 
   setTime(); //a timer starts 
-  askingQuestionX() ;
-  retrieveHighScore() ; //Not pushing to the array
-  
+  askingQuestionX();
+  //retrieveHighScore() ; //Not pushing to the array
+
 
 });

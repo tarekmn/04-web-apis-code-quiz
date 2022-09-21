@@ -4,12 +4,12 @@
   flex-direction: column;
   margin-top: 50px;
   text-align: center;
-  border: 2px black solid;
   justify-content: center;   
   align-items: center;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border: rgba(216, 197, 216, 0.94) 1px solid;
 
 }
-
 
 .statTime {
   display: flex;
