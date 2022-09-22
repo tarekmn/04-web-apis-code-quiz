@@ -77,14 +77,14 @@ var stringedArray = JSON.stringify(arrayOfScores)
 console.log(stringedArray);
 var retrievehighS = JSON.parse(stringedArray)
 localStorage.setItem("stringedArray", retrievehighS);
-
-
-}
-
 // when we save a game:
   // get the score 
   // add score to score to arrayOfScores
   // stringify and put into local storage 
+
+}
+
+
 
 
 function endGame() {
@@ -93,8 +93,7 @@ function endGame() {
   main.textContent = "Game Over! Please save your intials"
   count = 0;
 
-  //var inputLabel = document.createElement("label");
-  //inputLabel.textContent = "Your initials";
+  //Assigning values to buttons at end
   inputButton.textContent = "Save"
   viewHighScore.textContent = "View High Score";
   playAgain.textContent = "Play Again";
@@ -102,9 +101,7 @@ function endGame() {
   main.appendChild(inputButton);
   main.appendChild(viewHighScore)
   main.appendChild(playAgain);
-  // main.appendChild(inputLabel);
 
-  //Read from local and then push to an empty array
 
 
   inputButton.addEventListener("click", function (event) {

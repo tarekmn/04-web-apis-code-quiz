@@ -1,28 +1,31 @@
-
- header, main {
+/* Applying flex box to the header and main for visual appeal*/
+header,
+main {
   display: flex;
   flex-direction: column;
   margin-top: 50px;
   text-align: center;
-  justify-content: center;   
+  justify-content: center;
   align-items: center;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border: rgba(216, 197, 216, 0.94) 1px solid;
 
 }
 
+/* Flexing the timer to the end*/
 .statTime {
   display: flex;
   justify-content: flex-end;
 }
 
-
-#startbutton, button {
+/* Start button coloring*/
+#startbutton,
+button {
   background-color: rgba(216, 197, 216, 0.94);
 }
 
-ul {            /*I want to put space between buttons */
+/* list positioning*/
+ul {
   display: flex;
   justify-content: space-between;
 }
-
