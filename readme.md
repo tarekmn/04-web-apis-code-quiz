@@ -18,7 +18,7 @@ This code does not require any installation. The HTML and Assets folders are pro
 ## Usage
 The following code base was uploaded to a URL using GitHub for your convivence. The following URL is:
 
-X
+https://tarekmn.github.io/04-web-apis-code-quiz/
 
 
 In addition, I included screenshot below: 
