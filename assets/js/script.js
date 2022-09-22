@@ -4,10 +4,13 @@
 
 
 //Global variables
-var count = 25;
+var count = 20;
 var score = 0;
 var i = 0;
 var sampleArray = [4, 5 , 1 ,9 ,8]
+
+var arrayOfScores;
+
 
 //Selecting DOM elments
 var startButton = document.querySelector("#startbutton");
@@ -67,6 +70,22 @@ var questions = [
 ]
 
 
+function init() {
+ var getScore = JSON.parse(localStorage.getItem("highScore"));
+ console.log(getScore);
+
+  if( !getScore ){
+    arrayOfScores = []
+  } else {
+    arrayOfScores = getScore
+  }
+}
+
+// when we save a game:
+  // get the score 
+  // add score to score to arrayOfScores
+  // stringify and put into local storage 
+
 
 function endGame() {
   header.innerHTML = "";
@@ -84,6 +103,8 @@ function endGame() {
   main.appendChild(viewHighScore)
   main.appendChild(playAgain);
   // main.appendChild(inputLabel);
+
+  //Read from local and then push to an empty array
 
 
   inputButton.addEventListener("click", function (event) {
@@ -187,6 +208,7 @@ function askingQuestionX() {
 
 
 
+init();
 
 //Timer intervals & Updateing the count on page
 function setTime() {
