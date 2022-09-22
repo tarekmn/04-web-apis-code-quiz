@@ -1,13 +1,7 @@
-//Remaining Tasks:
-// 1. saving highscore to array
-// 2. showing high score view button
-
-
 //Global variables
-var count = 20;
+var count = 50;
 var score = 0;
 var i = 0;
-var sampleArray = [4, 5 , 1 ,9 ,8]
 
 var arrayOfScores;
 
@@ -79,6 +73,12 @@ function init() {
   } else {
     arrayOfScores = getScore
   }
+var stringedArray = JSON.stringify(arrayOfScores)
+console.log(stringedArray);
+var retrievehighS = JSON.parse(stringedArray)
+localStorage.setItem("stringedArray", retrievehighS);
+
+
 }
 
 // when we save a game:
@@ -91,7 +91,7 @@ function endGame() {
   header.innerHTML = "";
   main.innerHTML = "";
   main.textContent = "Game Over! Please save your intials"
-
+  count = 0;
 
   //var inputLabel = document.createElement("label");
   //inputLabel.textContent = "Your initials";
@@ -115,27 +115,8 @@ function endGame() {
     localStorage.setItem("initals", inputText.value);
     localStorage.setItem("highScore", score);
 
-    //Retrieve high score from local memory and push into array
 
-    
-    var finalScore = {
-      initials: inputText.value,
-      score: score
-    };
-    var localHighScore = localStorage.getItem("highScore");
-    //   console.log(finalScore);
-    if (localHighScore === null) {
-      localHighScore = []
-    } else {
-      localHighScore = JSON.parse(localHighScore)
-    }
-    var emptyArray = [];
-    emptyArray.push(finalScore);
-    console.log(emptyArray);
-
-    //localHighScore.push(finalScore);
-    console.log(localHighScore);
-  })
+})
 
   playAgain.addEventListener("click", function(event){
     document.location.reload(true);
@@ -144,10 +125,8 @@ function endGame() {
   viewHighScore.addEventListener("click", function(event){
 
     // We want it to retrieve the array and find high score
-    var indexOfHighestValue = Math.max(...sampleArray);
-    console.log(sampleArray);
-    console.log(indexOfHighestValue);
-    alert("The high score is:  " + indexOfHighestValue);
+    //var HighestValue = Math.max(...arrayOfScores);
+    alert("The high score is:  " + arrayOfScores);
 
 
   })
