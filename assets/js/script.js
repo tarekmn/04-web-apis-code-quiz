@@ -65,19 +65,19 @@ var questions = [
 
 
 function init() {
- var getScore = JSON.parse(localStorage.getItem("highScore"));
- console.log(getScore);
+  var getScore = JSON.parse(localStorage.getItem("highScore"));
+  console.log(getScore);
 
-  if( !getScore ){
+  if (!getScore) {
     arrayOfScores = []
   } else {
     arrayOfScores = getScore
   }
-var stringedArray = JSON.stringify(arrayOfScores)
-console.log(stringedArray);
-var retrievehighS = JSON.parse(stringedArray)
-localStorage.setItem("stringedArray", retrievehighS);
-// when we save a game:
+  var stringedArray = JSON.stringify(arrayOfScores)
+  console.log(stringedArray);
+  var retrievehighS = JSON.parse(stringedArray)
+  localStorage.setItem("stringedArray", retrievehighS);
+  // when we save a game:
   // get the score 
   // add score to score to arrayOfScores
   // stringify and put into local storage 
@@ -113,13 +113,13 @@ function endGame() {
     localStorage.setItem("highScore", score);
 
 
-})
+  })
 
-  playAgain.addEventListener("click", function(event){
+  playAgain.addEventListener("click", function (event) {
     document.location.reload(true);
   })
 
-  viewHighScore.addEventListener("click", function(event){
+  viewHighScore.addEventListener("click", function (event) {
 
     // We want it to retrieve the array and find high score
     //var HighestValue = Math.max(...arrayOfScores);
@@ -134,9 +134,9 @@ function endGame() {
 //function that asks questions[i]
 function askingQuestionX() {
 
-//creating elements to later append
+  //creating elements to later append
 
-  var questionText = document.createElement("h4");            
+  var questionText = document.createElement("h4");
   var answerTextUl = document.createElement("ul");
   var answerTextLi1 = document.createElement("button");
   var answerTextLi2 = document.createElement("button");
